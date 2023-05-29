@@ -1,3 +1,4 @@
+setwd()
 ##Tutorial para crear una filogenia de un listado de especies
 
 #devtools::install_github("jinyizju/V.PhyloMaker")
@@ -30,7 +31,7 @@ table(andes_temp2$status)
 head(as.data.frame(andes_temp2))
 
 #seleccionamos solo aquellas columnas que necesitamos
-species_list <- as.data.frame(andes_temp2[,c("species", "genus", "family")])
+species_list <- as.data.frame(andes_temp2[, c("species", "genus", "family")])
 head(species_list)
 
 #creamos las columnas de relatives que necesita V.Phylomaker
@@ -40,7 +41,7 @@ dim(species_list)
 write.csv(species_list, "species.csv")
 
 ## Creamos el arbol
-tree<-phylo.maker(sp.list =species_list, tree = GBOTB.extended, nodes = nodes.info.1, scenarios="S3")
+tree <- phylo.maker(sp.list =species_list, tree = GBOTB.extended, nodes = nodes.info.1, scenarios="S3")
 #comprbamos el tipo de archivo creado
 str(tree)
 class(tree)
@@ -53,6 +54,7 @@ write.tree(tree$scenario.3, "temp_tree.tre")
 ## Ahora editamos el arbol
 tree<-read.tree("temp_tree.tre")
 str(tree)
+
 newnames<-tree$tip.label
 newnames <- gsub('_', ' ', newnames)
 
@@ -100,3 +102,5 @@ plotTree(liliop,ftype="i", node.numbers=T)
 pooideae<-extract.clade(liliop,as.integer(53))
 plotTree(pooideae,ftype="i", node.numbers=T)
 
+
+##SALUDO
